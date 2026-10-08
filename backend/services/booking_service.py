@@ -17,10 +17,11 @@ load_dotenv(dotenv_path=env_path)
 
 logger = logging.getLogger("cafe_backend.booking_service")
 
-# Environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://mfnaqwyxaabawzbajomi.supabase.co").rstrip("/")
+DEFAULT_SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbmFxd3l4YWFiYXd6YmFqb21pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MTQ1MTY2NiwiZXhwIjoyMTA3MDI3NjY2fQ.hijNWDh6JN-ATk_SLRW4rf5LBcKO5KYJJ7PDL8IUpDg"
+DEFAULT_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbmFxd3l4YWFiYXd6YmFqb21pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NTE2NjYsImV4cCI6MjEwNzAyNzY2Nn0.6jLigp-ZUYbtDH028KON8saziqOv13nl9pxRlwfW59k"
 # Prefer SERVICE_ROLE_KEY for server-side operations, fall back to SUPABASE_KEY / anon key
-SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY", "")
+SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY") or DEFAULT_SERVICE_ROLE_KEY
 DEFAULT_RESERVATION_DURATION_MINUTES = int(os.getenv("DEFAULT_RESERVATION_DURATION_MINUTES", "90"))
 
 # Default initial tables if database is empty

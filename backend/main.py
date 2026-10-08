@@ -72,19 +72,21 @@ app = FastAPI(
     version="2.0.0",
 )
 
-allowed_origins = [origin.strip() for origin in FRONTEND_ORIGIN.split(",") if origin.strip()]
-if not allowed_origins:
-    allowed_origins = ["http://localhost:5173"]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origin_regex=r".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-logger.info(f"CORS configured for allowed origins: {allowed_origins}")
+logger.info("CORS configured to allow all origins via regex.")
+
+
+@app.get("/")
+def health_check():
+    """Health check endpoint for Render / monitoring."""
+    return {"status": "ok", "service": "Café Chatbot & Reservation API", "version": "2.0.0"}
 
 
 # ---------------------------------------------------------------------------
