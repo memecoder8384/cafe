@@ -93,14 +93,17 @@ export const AdminOverview: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-4 bg-red-950/40 border border-red-800/60 rounded-xl text-red-200 text-xs flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <AlertCircle size={16} />
-            <span>{error}</span>
+        <div className="p-4 bg-red-950/40 border border-red-800/60 rounded-xl text-red-200 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex items-start gap-2.5">
+            <AlertCircle size={18} className="shrink-0 mt-0.5 text-red-400" />
+            <div>
+              <p className="font-semibold text-red-300">Backend Connection Required</p>
+              <p className="text-red-200/80 mt-0.5 leading-relaxed">{error}</p>
+            </div>
           </div>
           <button
             onClick={loadStats}
-            className="underline hover:text-white cursor-pointer ml-4 font-medium"
+            className="px-3 py-1.5 bg-red-900/40 hover:bg-red-800/60 border border-red-700/60 rounded-lg text-xs font-medium text-white transition-colors cursor-pointer shrink-0"
           >
             Retry
           </button>

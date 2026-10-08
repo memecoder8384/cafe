@@ -23,18 +23,17 @@ export interface ReservationData {
 
 export async function saveReservation(reservation: ReservationData) {
   try {
+    const guestsNum = parseInt(String(reservation.guest_count).replace(/\D/g, ''), 10) || 2;
     const { data, error } = await supabase
-      .from('reservations')
+      .from('Bookings')
       .insert([
         {
-          guest_name: reservation.guest_name || 'Guest',
+          customer_name: reservation.guest_name || 'Guest',
           phone: reservation.phone || null,
-          guest_count: String(reservation.guest_count),
-          date: reservation.date || new Date().toISOString().split('T')[0],
-          time: reservation.time,
-          city: reservation.city,
-          event_type: reservation.event_type || 'Casual Dinner',
-          special_requests: reservation.special_requests || null,
+          guests: guestsNum,
+          booking_date: reservation.date || new Date().toISOString().split('T')[0],
+          booking_time: reservation.time || '19:30',
+          special_request: reservation.special_requests || reservation.event_type || null,
           source: reservation.source || 'website_form',
           status: reservation.status || 'confirmed',
         },
@@ -42,8 +41,29 @@ export async function saveReservation(reservation: ReservationData) {
       .select();
 
     if (error) {
-      console.warn('Supabase insert note:', error.message);
-      return { success: false, error: error.message };
+      console.warn('Supabase Bookings insert note:', error.message);
+      // Fallback try reservations table if schema differs
+      const fallback = await supabase
+        .from('reservations')
+        .insert([
+          {
+            guest_name: reservation.guest_name || 'Guest',
+            phone: reservation.phone || null,
+            guest_count: String(reservation.guest_count),
+            date: reservation.date || new Date().toISOString().split('T')[0],
+            time: reservation.time,
+            city: reservation.city,
+            event_type: reservation.event_type || 'Casual Dinner',
+            special_requests: reservation.special_requests || null,
+            source: reservation.source || 'website_form',
+            status: reservation.status || 'confirmed',
+          },
+        ])
+        .select();
+      if (fallback.error) {
+        return { success: false, error: error.message };
+      }
+      return { success: true, data: fallback.data };
     }
     return { success: true, data };
   } catch (err: any) {

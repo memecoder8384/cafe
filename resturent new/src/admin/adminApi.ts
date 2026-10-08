@@ -11,14 +11,25 @@ async function getAuthHeaders() {
   };
 }
 
-export async function fetchAdminStats() {
-  const headers = await getAuthHeaders();
-  const res = await fetch(`${BACKEND_URL}/api/admin/stats`, { headers });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || `Failed to fetch stats (${res.status})`);
+function formatBackendError(err: any): string {
+  if (err?.name === 'TypeError' || err?.message === 'Failed to fetch') {
+    return `Backend API is offline or not reachable at ${BACKEND_URL}. Netlify only hosts the frontend; please deploy your FastAPI backend (e.g. on Render or Railway) and set VITE_CHATBOT_API_URL in Netlify's environment variables.`;
   }
-  return res.json();
+  return err?.message || 'Failed to fetch data from backend';
+}
+
+export async function fetchAdminStats() {
+  try {
+    const headers = await getAuthHeaders();
+    const res = await fetch(`${BACKEND_URL}/api/admin/stats`, { headers });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || `Failed to fetch stats (${res.status})`);
+    }
+    return await res.json();
+  } catch (err: any) {
+    throw new Error(formatBackendError(err));
+  }
 }
 
 export async function fetchAdminBookings(filters?: {
@@ -27,20 +38,24 @@ export async function fetchAdminBookings(filters?: {
   search?: string;
   source?: string;
 }) {
-  const headers = await getAuthHeaders();
-  const params = new URLSearchParams();
-  if (filters?.date) params.append('date', filters.date);
-  if (filters?.status && filters.status !== 'all') params.append('status', filters.status);
-  if (filters?.search) params.append('search', filters.search);
-  if (filters?.source && filters.source !== 'all') params.append('source', filters.source);
+  try {
+    const headers = await getAuthHeaders();
+    const params = new URLSearchParams();
+    if (filters?.date) params.append('date', filters.date);
+    if (filters?.status && filters.status !== 'all') params.append('status', filters.status);
+    if (filters?.search) params.append('search', filters.search);
+    if (filters?.source && filters.source !== 'all') params.append('source', filters.source);
 
-  const res = await fetch(`${BACKEND_URL}/api/bookings?${params.toString()}`, { headers });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || `Failed to fetch bookings (${res.status})`);
+    const res = await fetch(`${BACKEND_URL}/api/bookings?${params.toString()}`, { headers });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || `Failed to fetch bookings (${res.status})`);
+    }
+    const data = await res.json();
+    return data.bookings || [];
+  } catch (err: any) {
+    throw new Error(formatBackendError(err));
   }
-  const data = await res.json();
-  return data.bookings || [];
 }
 
 export async function updateBookingStatus(bookingId: string, status: string) {
@@ -85,13 +100,17 @@ export async function cancelBooking(bookingId: string) {
 }
 
 export async function fetchTables() {
-  const res = await fetch(`${BACKEND_URL}/api/tables`);
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || `Failed to fetch tables (${res.status})`);
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/tables`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || `Failed to fetch tables (${res.status})`);
+    }
+    const data = await res.json();
+    return data.tables || [];
+  } catch (err: any) {
+    throw new Error(formatBackendError(err));
   }
-  const data = await res.json();
-  return data.tables || [];
 }
 
 export async function createTable(table: { table_number: string; capacity: number; status?: string }) {
