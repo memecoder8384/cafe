@@ -67,7 +67,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenReservationModal, onSelect
         {/* Logo Left */}
         <a
           href="#"
-          className="group flex items-center gap-3 text-2xl md:text-3xl font-serif-display font-bold text-[#1A1A1A] tracking-tight"
+          className={`group flex items-center gap-3 text-2xl md:text-3xl font-serif-display font-bold tracking-tight transition-colors ${
+            isScrolled ? 'text-[#1A1A1A]' : 'text-[#F6EFE3]'
+          }`}
           data-cursor="Home"
           data-cursor-variant="button"
         >
@@ -75,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenReservationModal, onSelect
             C
           </span>
           <span>
-            Bistrot <span className="font-serif-italic text-[#C8321F]">Chérie</span>
+            Bistrot <span className={`font-serif-italic ${isScrolled ? 'text-[#C8321F]' : 'text-[#E9B44C]'}`}>Chérie</span>
           </span>
         </a>
 
@@ -89,11 +91,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenReservationModal, onSelect
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className="relative text-[#1A1A1A]/80 hover:text-[#C8321F] transition-colors py-1 group"
+              className={`relative transition-colors py-1 group ${
+                isScrolled ? 'text-[#1A1A1A]/80 hover:text-[#C8321F]' : 'text-[#F6EFE3]/80 hover:text-[#E9B44C]'
+              }`}
               data-cursor="Explore"
             >
               {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#C8321F] transition-all duration-300 group-hover:w-full" />
+              <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                isScrolled ? 'bg-[#C8321F]' : 'bg-[#E9B44C]'
+              }`} />
             </a>
           ))}
         </nav>

@@ -32,6 +32,9 @@ env/
 # Backup data
 backend/knowledge/reservations_backup.json
 
+# Local raw media folder
+burrger/
+
 node_modules/
 dist/
 dist-ssr/
