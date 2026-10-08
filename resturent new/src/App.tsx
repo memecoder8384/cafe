@@ -65,7 +65,7 @@ export const App: React.FC = () => {
       <CustomCursor />
 
       {/* React Bits Fluid Splash Cursor Effect */}
-      <SplashCursor />
+      <SplashCursor COLOR="#f75555" />
 
       {/* Page Intro Loader */}
       {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}

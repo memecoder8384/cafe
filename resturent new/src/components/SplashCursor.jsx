@@ -17,8 +17,8 @@ function SplashCursor({
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true,
-  RAINBOW_MODE = true,
-  COLOR = '#C8321F'
+  RAINBOW_MODE = false,
+  COLOR = '#f75555'
 }) {
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
@@ -920,7 +920,13 @@ function SplashCursor({
 
     function generateColor() {
       if (!config.RAINBOW_MODE) {
-        return hexToRGB(config.COLOR);
+        const base = hexToRGB(config.COLOR);
+        const variation = (Math.random() - 0.5) * 0.08;
+        return {
+          r: Math.max(0, Math.min(1, base.r + variation)),
+          g: Math.max(0, Math.min(1, base.g + variation * 0.5)),
+          b: Math.max(0, Math.min(1, base.b + variation * 0.5))
+        };
       }
       let c = HSVtoRGB(Math.random(), 0.85, 0.95);
       return c;
