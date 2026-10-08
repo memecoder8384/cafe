@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-cream: #F6EFE3;
+    --tomato-red: #C8321F;
+    --forest-green: #1F3D2B;
+    --mustard: #E9B44C;
+    --near-black: #1A1A1A;
+    --soft-sand: #ECE3D2;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--near-black);
+    cursor: default;
+  }
+
+  h1, h2, h3, h4, .font-serif-display {
+    font-family: 'Fraunces', 'DM Serif Display', Georgia, serif;
+    font-optical-sizing: auto;
+  }
+
+  .font-serif-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+  }
+}
+
+/* Custom Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F6EFE3;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8321F;
+  border-radius: 4px;
+}
+
+/* Chatbot Specific Nested Scroll Area */
+.chat-scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 50, 31, 0.4) transparent;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.chat-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(200, 50, 31, 0.4);
+  border-radius: 9999px;
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 50, 31, 0.8);
+}
+
+/* Marquee infinite animation keyframes */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-reverse 35s linear infinite;
+}
+
+.animate-marquee:hover, .animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Magnetic / Sweep hover button effect */
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.btn-sweep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--tomato-red);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: -1;
+  border-radius: 9999px;
+}
+
+.btn-sweep:hover::before {
+  transform: scaleY(1);
+}
+
+/* Text Roll Effect */
+.text-roll {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.text-roll-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-roll:hover .text-roll-inner {
+  transform: translateY(-50%);
+}
+
+/* Custom Cursor Hide Default when active */
+@media (pointer: fine) {
+  body.custom-cursor-active {
+    cursor: none !important;
+  }
+  body.custom-cursor-active a, 
+  body.custom-cursor-active button, 
+  body.custom-cursor-active input {
+    cursor: none !important;
+  }
+}

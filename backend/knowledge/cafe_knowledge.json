@@ -1,0 +1,342 @@
+{
+  "cafe_info": {
+    "name": "Bistrot Chérie",
+    "tagline": "Life is a party, and the table is a feast.",
+    "description": "An energetic fusion of Parisian bistro elegance and Italian trattoria soul. Fresh pasta made daily at 5 AM, natural wines from small European vineyards, and late-night vinyl records.",
+    "established": "2019"
+  },
+  "opening_hours": {
+    "general": "We are open from 10:00 AM to 11:00 PM every day.",
+    "monday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM)",
+    "tuesday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM)",
+    "wednesday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM, New York: 05:00 PM - 02:00 AM)",
+    "thursday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM, New York: 05:00 PM - 02:00 AM)",
+    "friday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM, New York: 05:00 PM - 02:00 AM)",
+    "saturday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM, New York: 05:00 PM - 02:00 AM)",
+    "sunday": "10:00 AM - 11:00 PM (Paris: 12:00 PM - 01:30 AM, Milano: 12:30 PM - 01:00 AM, New York: 05:00 PM - 02:00 AM)"
+  },
+  "location": {
+    "address": "34 Rue des Archives, Le Marais, 75004 Paris, France",
+    "landmark": "Le Marais district near Place des Vosges",
+    "google_maps_url": "https://maps.google.com/?q=34+Rue+des+Archives+75004+Paris",
+    "cities": [
+      {
+        "city": "Paris",
+        "neighborhood": "Le Marais",
+        "address": "34 Rue des Archives, 75004 Paris",
+        "phone": "+33 1 42 68 55 90",
+        "hours": "Mon-Sun: 12:00 PM - 01:30 AM",
+        "status": "Open Now • DJ Set Tonight"
+      },
+      {
+        "city": "Milano",
+        "neighborhood": "Brera District",
+        "address": "Via Fiori Chiari 18, 20121 Milano",
+        "phone": "+39 02 8901 3412",
+        "hours": "Tue-Sun: 12:30 PM - 01:00 AM",
+        "status": "Open Now • Terrace Table Available"
+      },
+      {
+        "city": "New York",
+        "neighborhood": "SoHo",
+        "address": "142 Spring Street, New York, NY 10012",
+        "phone": "+1 (212) 843-9920",
+        "hours": "Wed-Mon: 05:00 PM - 02:00 AM",
+        "status": "Closed • Opens 5:00 PM"
+      },
+      {
+        "city": "Saint-Tropez",
+        "neighborhood": "La Ponche",
+        "address": "Place des Lices, 83990 Saint-Tropez",
+        "phone": "+33 4 94 97 00 11",
+        "hours": "Seasonal Summer Opening",
+        "status": "Coming Spring 2027"
+      }
+    ]
+  },
+  "contact": {
+    "phone": "+33 1 42 68 55 90",
+    "email": "ciao@bistrotcherie.com",
+    "instagram": "@bistrotcherie"
+  },
+  "menu": [
+    {
+      "name": "Paneer Tikka",
+      "category": "Starters",
+      "price": 299,
+      "price_display": "₹299",
+      "description": "Marinated cottage cheese cubes chargrilled with crisp bell peppers, onions, and aromatic herbs.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian"]
+    },
+    {
+      "name": "Tagliatelle al Tartufo",
+      "category": "Fresh Pasta",
+      "price": 28,
+      "price_display": "€28",
+      "description": "Hand-rolled egg pasta with 36-month aged Parmigiano Reggiano, cultured French butter, and fresh Norcia black truffle shaved tableside.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian", "Chef's Signature"]
+    },
+    {
+      "name": "Burrata Pugliese & Pêches Rôties",
+      "category": "Antipasti",
+      "price": 21,
+      "price_display": "€21",
+      "description": "Creamy 250g Puglia burrata paired with roasted white peaches, 25-year aged Modena balsamic, wild thyme, and toasted Sicilian pistachios.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian", "Organic"]
+    },
+    {
+      "name": "Côte de Boeuf à la Fiorentina",
+      "category": "Grill & Principale",
+      "price": 85,
+      "price_display": "€85 (For two)",
+      "description": "Dry-aged 45-day Chianina beef ribeye grilled over olive wood embers, served with bone marrow jus, roasted garlic bulb, and crispy rosemary potatoes.",
+      "vegetarian": false,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Gluten-Free", "Wood-Fired"]
+    },
+    {
+      "name": "Arancini al Ragù di Cervo",
+      "category": "Antipasti",
+      "price": 18,
+      "price_display": "€18",
+      "description": "Crispy saffron risotto spheres filled with slow-braised venison ragù and molten smoked scamorza cheese.",
+      "vegetarian": false,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Chef Special"]
+    },
+    {
+      "name": "Pappardelle al Cinghiale",
+      "category": "Fresh Pasta",
+      "price": 26,
+      "price_display": "€26",
+      "description": "Wide ribbon pasta with 12-hour braised wild boar ragù, juniper berries, and crushed Valdostana chestnuts.",
+      "vegetarian": false,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Organic"]
+    },
+    {
+      "name": "Polpo alla Griglia con Nduja",
+      "category": "Grill & Principale",
+      "price": 32,
+      "price_display": "€32",
+      "description": "Charred Mediterranean octopus tentacle over smoky Cannellini bean puree, spicy Calabrian Nduja emulsion, and pickled shallots.",
+      "vegetarian": false,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Gluten-Free"]
+    },
+    {
+      "name": "Tiramisu au Calvados",
+      "category": "Dolci & Desserts",
+      "price": 14,
+      "price_display": "€14",
+      "description": "Savoiardi soaked in single-origin Ethiopian espresso and aged Normandy Calvados, layered with whipped mascarpone and dark Valrhona 70% chocolate shavings.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian"]
+    },
+    {
+      "name": "Cannoli Siciliani al Pistacchio",
+      "category": "Dolci & Desserts",
+      "price": 12,
+      "price_display": "€12",
+      "description": "Crispy fried pastry shells stuffed with sweet sheep ricotta, candied Amalfi lemon peel, and crushed Bronte pistachios.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian"]
+    },
+    {
+      "name": "Chérie Spritz Royale",
+      "category": "Vins & Cocktails",
+      "price": 16,
+      "price_display": "€16",
+      "description": "Select Aperitivo infused with fresh raspberries, Italicus Bergamot liqueur, organic Prosecco Superiore, and a dash of sparkling soda.",
+      "vegetarian": true,
+      "vegan": true,
+      "available": true,
+      "dietary": ["Vegan", "Organic"]
+    },
+    {
+      "name": "Smoky Mezcal Paloma Italian",
+      "category": "Vins & Cocktails",
+      "price": 17,
+      "price_display": "€17",
+      "description": "Oaxacan Mezcal, Solerno Blood Orange Liqueur, fresh ruby red grapefruit juice, lime, and smoked sea salt rim.",
+      "vegetarian": true,
+      "vegan": true,
+      "available": true,
+      "dietary": ["Vegan"]
+    },
+    {
+      "name": "Artisanal Espresso",
+      "category": "Coffee & Beverages",
+      "price": 4,
+      "price_display": "€4",
+      "description": "Single-origin Ethiopian roast espresso with rich crema and dark cocoa notes.",
+      "vegetarian": true,
+      "vegan": true,
+      "available": true,
+      "dietary": ["Vegan"]
+    },
+    {
+      "name": "Cappuccino Chérie",
+      "category": "Coffee & Beverages",
+      "price": 5.5,
+      "price_display": "€5.50",
+      "description": "Velvety micro-foamed milk over rich double espresso with Valrhona dusting. Oat milk available on request.",
+      "vegetarian": true,
+      "vegan": false,
+      "available": true,
+      "dietary": ["Vegetarian"]
+    }
+  ],
+  "popular_items": {
+    "best_seller": {
+      "name": "Tagliatelle al Tartufo",
+      "category": "Fresh Pasta",
+      "price": 28,
+      "price_display": "€28",
+      "description": "Hand-rolled egg pasta with 36-month aged Parmigiano Reggiano, cultured French butter, and fresh Norcia black truffle shaved tableside. Our #1 chef signature and most loved dish."
+    },
+    "popular_items": [
+      {
+        "name": "Tagliatelle al Tartufo",
+        "price_display": "€28",
+        "category": "Fresh Pasta"
+      },
+      {
+        "name": "Burrata Pugliese & Pêches Rôties",
+        "price_display": "€21",
+        "category": "Antipasti"
+      },
+      {
+        "name": "Paneer Tikka",
+        "price_display": "₹299",
+        "category": "Starters"
+      },
+      {
+        "name": "Tiramisu au Calvados",
+        "price_display": "€14",
+        "category": "Dolci & Desserts"
+      },
+      {
+        "name": "Chérie Spritz Royale",
+        "price_display": "€16",
+        "category": "Vins & Cocktails"
+      }
+    ]
+  },
+  "services": [
+    "Dine-in full service (indoor salon and outdoor terrace)",
+    "Takeaway service available for all food items",
+    "Table reservations for lunch and dinner",
+    "Private dining and event hosting",
+    "Late-night vinyl DJ sessions and aperitivo hours",
+    "Specialty coffee and artisanal pastry service"
+  ],
+  "services_info": {
+    "takeaway": "Yes, we offer takeaway for all menu items. You can order directly at the counter or call ahead at +33 1 42 68 55 90 for quick pickup.",
+    "delivery": "Yes, delivery is available through select courier partners.",
+    "wifi": "Yes, complimentary high-speed Wi-Fi is available for all guests.",
+    "parking": "Street parking and nearby public parking lots are available around our locations.",
+    "outdoor_seating": "Yes, we have a beautiful sunlit outdoor terrace with heated seating.",
+    "dine_in": "Yes, we offer full table service in both our indoor salon and outdoor terrace."
+  },
+  "reservations": {
+    "available": true,
+    "method": "Online via our website reservation widget or by phone at +33 1 42 68 55 90.",
+    "phone": "+33 1 42 68 55 90",
+    "advance_notice": "Reservations open up to 30 days in advance.",
+    "group_bookings": "Groups of 6 or more require advance booking.",
+    "walk_ins": "Walk-ins are welcomed warmly depending on table availability.",
+    "details": "Yes, you can reserve a table online through our website or by calling us at +33 1 42 68 55 90. Tables can be booked up to 30 days in advance, and walk-ins are always welcome!"
+  },
+  "delivery": {
+    "available": true,
+    "details": "We offer delivery via select local courier delivery partners. Delivery options and timings can be found on our partner ordering links."
+  },
+  "takeaway": {
+    "available": true,
+    "details": "Yes, we offer takeaway for all menu items. You can order directly at the counter or call ahead at +33 1 42 68 55 90 for quick pickup.",
+    "packaging": "All takeaway orders use 100% recyclable and biodegradable packaging."
+  },
+  "facilities": [
+    "Sunlit outdoor terrace with heated seating",
+    "Air-conditioned Parisian indoor salon",
+    "Complimentary high-speed Wi-Fi",
+    "Wheelchair accessible entrances and restrooms",
+    "Custom vinyl DJ booth and state-of-the-art acoustics",
+    "Pet-friendly outdoor terrace seating"
+  ],
+  "offers": [
+    {
+      "title": "Afterwork Aperitivo",
+      "timing": "Monday to Friday: 5:00 PM - 7:00 PM",
+      "description": "Complimentary artisanal tapas bites with every spritz or glass of natural wine."
+    },
+    {
+      "title": "Lunch Break Formula",
+      "timing": "Monday to Friday: 12:00 PM - 3:00 PM",
+      "description": "Quick two-course chef special menu for €24."
+    },
+    {
+      "title": "Sunday Truffle Brunch",
+      "timing": "Sundays: 11:30 AM - 3:30 PM",
+      "description": "Exclusive seasonal truffle egg and fresh pasta creations."
+    }
+  ],
+  "policies": {
+    "cancellation": "Free reservation cancellation up to 2 hours before booking time.",
+    "dress_code": "Smart casual.",
+    "payment_methods": ["Cash", "Visa", "MasterCard", "American Express", "Apple Pay", "Google Pay"],
+    "pets": "Dogs are welcome on the outdoor terrace."
+  },
+  "faq": [
+    {
+      "question": "What time do you open?",
+      "answer": "We are open from 10:00 AM to 11:00 PM every day (Paris flagship opens 12:00 PM - 01:30 AM)."
+    },
+    {
+      "question": "What is the price of paneer tikka?",
+      "answer": "Paneer Tikka is available for ₹299."
+    },
+    {
+      "question": "Do you have vegetarian options?",
+      "answer": "Yes! We have several vegetarian options including Paneer Tikka (₹299), Tagliatelle al Tartufo (€28), Burrata Pugliese (€21), and Cannoli Siciliani (€12)."
+    },
+    {
+      "question": "Where are you located?",
+      "answer": "Our flagship café is located at 34 Rue des Archives in Le Marais, Paris. We also have locations in Milano (Via Fiori Chiari 18) and New York (142 Spring Street)."
+    },
+    {
+      "question": "Do you offer takeaway?",
+      "answer": "Yes, we offer takeaway for all menu items. You can order at the counter or call ahead for pickup."
+    },
+    {
+      "question": "Do you offer delivery?",
+      "answer": "Yes, delivery is available through select courier partners."
+    },
+    {
+      "question": "Can I make a reservation?",
+      "answer": "Yes, you can reserve a table online through our website or by calling +33 1 42 68 55 90."
+    },
+    {
+      "question": "Do you have outdoor seating?",
+      "answer": "Yes, we have a lovely outdoor terrace with heating and sun protection."
+    }
+  ]
+}
