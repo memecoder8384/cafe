@@ -67,17 +67,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenReservationModal, onSelect
         {/* Logo Left */}
         <a
           href="#"
-          className={`group flex items-center gap-3 text-2xl md:text-3xl font-serif-display font-bold tracking-tight transition-colors ${
-            isScrolled ? 'text-[#1A1A1A]' : 'text-[#F6EFE3]'
-          }`}
+          className="group flex items-center gap-3 text-2xl md:text-3xl font-serif-display font-bold tracking-tight text-[#1A1A1A] transition-colors"
           data-cursor="Home"
           data-cursor-variant="button"
         >
-          <span className="w-10 h-10 rounded-full bg-[#C8321F] text-white flex items-center justify-center font-serif-italic text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+          <span className="w-10 h-10 rounded-full bg-[#C8321F] text-white flex items-center justify-center font-serif-italic text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-sm">
             C
           </span>
           <span>
-            Bistrot <span className={`font-serif-italic ${isScrolled ? 'text-[#C8321F]' : 'text-[#E9B44C]'}`}>Chérie</span>
+            Bistrot <span className="font-serif-italic text-[#C8321F]">Chérie</span>
           </span>
         </a>
 
@@ -91,15 +89,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenReservationModal, onSelect
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className={`relative transition-colors py-1 group ${
-                isScrolled ? 'text-[#1A1A1A]/80 hover:text-[#C8321F]' : 'text-[#F6EFE3]/80 hover:text-[#E9B44C]'
-              }`}
+              className="relative transition-colors py-1 group text-[#1A1A1A]/80 hover:text-[#C8321F]"
               data-cursor="Explore"
             >
               {link.label}
-              <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                isScrolled ? 'bg-[#C8321F]' : 'bg-[#E9B44C]'
-              }`} />
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full bg-[#C8321F]" />
             </a>
           ))}
         </nav>
