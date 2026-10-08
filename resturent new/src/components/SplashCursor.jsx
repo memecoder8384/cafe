@@ -6,13 +6,13 @@ function SplashCursor({
   SIM_RESOLUTION = 128,
   DYE_RESOLUTION = 1024,
   CAPTURE_RESOLUTION = 512,
-  DENSITY_DISSIPATION = 4.5,
-  VELOCITY_DISSIPATION = 3.0,
+  DENSITY_DISSIPATION = 2.8,
+  VELOCITY_DISSIPATION = 2.0,
   PRESSURE = 0.1,
   PRESSURE_ITERATIONS = 20,
-  CURL = 5,
-  SPLAT_RADIUS = 0.15,
-  SPLAT_FORCE = 1500,
+  CURL = 8,
+  SPLAT_RADIUS = 0.22,
+  SPLAT_FORCE = 3200,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
@@ -319,11 +319,11 @@ function SplashCursor({
               c *= diffuse;
           #endif
 
-          // Soft clamping to prevent oversaturated blown-out white centers
+          // Clamp max brightness to prevent white clipping while preserving vibrant hue
           c = clamp(c, 0.0, 1.0);
           float lum = max(c.r, max(c.g, c.b));
-          // Elegant subtle alpha (maximum ~45% opacity for delicate luxury feel)
-          float a = clamp(lum * 0.7, 0.0, 0.45);
+          // Clear, visible alpha response (up to ~75% opacity)
+          float a = clamp(lum * 1.3, 0.0, 0.75);
           gl_FragColor = vec4(c * a, a);
       }
     `;
@@ -914,13 +914,13 @@ function SplashCursor({
       const r = parseInt(val.slice(0, 2), 16) / 255;
       const g = parseInt(val.slice(2, 4), 16) / 255;
       const b = parseInt(val.slice(4, 6), 16) / 255;
-      return { r: r * 0.35, g: g * 0.35, b: b * 0.35 };
+      return { r: r * 0.7, g: g * 0.7, b: b * 0.7 };
     }
 
     function generateColor() {
       if (!config.RAINBOW_MODE) {
         const base = hexToRGB(config.COLOR);
-        const variation = (Math.random() - 0.5) * 0.04;
+        const variation = (Math.random() - 0.5) * 0.05;
         return {
           r: Math.max(0, base.r + variation),
           g: Math.max(0, base.g + variation * 0.5),
@@ -928,9 +928,9 @@ function SplashCursor({
         };
       }
       let c = HSVtoRGB(Math.random(), 0.85, 0.95);
-      c.r *= 0.35;
-      c.g *= 0.35;
-      c.b *= 0.35;
+      c.r *= 0.7;
+      c.g *= 0.7;
+      c.b *= 0.7;
       return c;
     }
 
