@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUp, Music2, Mail, Heart, CheckCircle2, Share2 } from 'lucide-react';
 
@@ -152,6 +153,7 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-6">
           <a href="#" className="hover:underline">Privacy Policy</a>
           <a href="#" className="hover:underline">Terms of Service</a>
+          <Link to="/admin/login" className="hover:underline text-white/50 hover:text-white transition-colors" data-cursor="Admin">Staff Portal</Link>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-white hover:text-[#E9B44C] transition-colors font-semibold uppercase tracking-wider text-[11px]"

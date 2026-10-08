@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabaseClient';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:8000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_CHATBOT_API_URL || 'http://127.0.0.1:8000';
 
 async function getAuthHeaders() {
   const { data } = await supabase.auth.getSession();
