@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import { CustomCursor } from './components/CustomCursor';
+import SplashCursor from './components/SplashCursor';
 import { PageLoader } from './components/PageLoader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -62,6 +63,9 @@ export const App: React.FC = () => {
 
       {/* Custom Spring Cursor */}
       <CustomCursor />
+
+      {/* React Bits Fluid Splash Cursor Effect */}
+      <SplashCursor />
 
       {/* Page Intro Loader */}
       {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}
