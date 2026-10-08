@@ -13,6 +13,7 @@ import { Locations } from './components/Locations';
 import { ReservationCTA } from './components/ReservationCTA';
 import { Footer } from './components/Footer';
 import { CafeChatbot } from './components/CafeChatbot';
+import { WelcomeVoice } from './components/WelcomeVoice';
 
 export const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -116,6 +117,9 @@ export const App: React.FC = () => {
 
           {/* Floating Café Assistant Chatbot */}
           <CafeChatbot />
+
+          {/* Welcome Voice Gesture */}
+          <WelcomeVoice isSiteReady={!isLoading} />
         </>
       )}
     </div>
