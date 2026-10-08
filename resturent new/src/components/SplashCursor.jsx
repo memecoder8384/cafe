@@ -6,13 +6,13 @@ function SplashCursor({
   SIM_RESOLUTION = 128,
   DYE_RESOLUTION = 1024,
   CAPTURE_RESOLUTION = 512,
-  DENSITY_DISSIPATION = 1.8,
-  VELOCITY_DISSIPATION = 1.6,
+  DENSITY_DISSIPATION = 4.5,
+  VELOCITY_DISSIPATION = 3.0,
   PRESSURE = 0.1,
   PRESSURE_ITERATIONS = 20,
-  CURL = 12,
-  SPLAT_RADIUS = 0.35,
-  SPLAT_FORCE = 6000,
+  CURL = 5,
+  SPLAT_RADIUS = 0.15,
+  SPLAT_FORCE = 1500,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
@@ -319,9 +319,11 @@ function SplashCursor({
               c *= diffuse;
           #endif
 
-          // Calculate alpha and premultiplied color for transparent HTML canvas compositing
+          // Soft clamping to prevent oversaturated blown-out white centers
+          c = clamp(c, 0.0, 1.0);
           float lum = max(c.r, max(c.g, c.b));
-          float a = clamp(lum * 1.8, 0.0, 0.95);
+          // Elegant subtle alpha (maximum ~45% opacity for delicate luxury feel)
+          float a = clamp(lum * 0.7, 0.0, 0.45);
           gl_FragColor = vec4(c * a, a);
       }
     `;
@@ -835,11 +837,8 @@ function SplashCursor({
 
     function clickSplat(pointer) {
       const color = generateColor();
-      color.r *= 2.0;
-      color.g *= 2.0;
-      color.b *= 2.0;
-      let dx = 100 * (Math.random() - 0.5);
-      let dy = 100 * (Math.random() - 0.5);
+      let dx = 30 * (Math.random() - 0.5);
+      let dy = 30 * (Math.random() - 0.5);
       splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
     }
 
@@ -915,20 +914,23 @@ function SplashCursor({
       const r = parseInt(val.slice(0, 2), 16) / 255;
       const g = parseInt(val.slice(2, 4), 16) / 255;
       const b = parseInt(val.slice(4, 6), 16) / 255;
-      return { r, g, b };
+      return { r: r * 0.35, g: g * 0.35, b: b * 0.35 };
     }
 
     function generateColor() {
       if (!config.RAINBOW_MODE) {
         const base = hexToRGB(config.COLOR);
-        const variation = (Math.random() - 0.5) * 0.08;
+        const variation = (Math.random() - 0.5) * 0.04;
         return {
-          r: Math.max(0, Math.min(1, base.r + variation)),
-          g: Math.max(0, Math.min(1, base.g + variation * 0.5)),
-          b: Math.max(0, Math.min(1, base.b + variation * 0.5))
+          r: Math.max(0, base.r + variation),
+          g: Math.max(0, base.g + variation * 0.5),
+          b: Math.max(0, base.b + variation * 0.5)
         };
       }
       let c = HSVtoRGB(Math.random(), 0.85, 0.95);
+      c.r *= 0.35;
+      c.g *= 0.35;
+      c.b *= 0.35;
       return c;
     }
 
@@ -1056,13 +1058,6 @@ function SplashCursor({
     window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove, false);
     window.addEventListener('touchend', handleTouchEnd);
-
-    // Initial warm greeting splat in center
-    setTimeout(() => {
-      if (isActive && pointers[0]) {
-        clickSplat(pointers[0]);
-      }
-    }, 400);
 
     updateFrame();
 
