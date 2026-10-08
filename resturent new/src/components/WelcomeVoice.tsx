@@ -6,49 +6,63 @@ interface WelcomeVoiceProps {
 
 export const WelcomeVoice: React.FC<WelcomeVoiceProps> = ({ isSiteReady }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const hasTriggeredRef = useRef<boolean>(false);
+  const hasPlayedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (!isSiteReady || hasTriggeredRef.current) return;
-    hasTriggeredRef.current = true;
+    // 1. Preload audio as soon as component mounts
+    if (!audioRef.current) {
+      const audio = new Audio('/welcome.mp3');
+      audio.preload = 'auto';
+      audio.volume = 1.0;
+      audioRef.current = audio;
+    }
 
-    const audio = new Audio('/welcome.mp3');
-    audio.preload = 'auto';
-    audioRef.current = audio;
+    const audio = audioRef.current;
 
     const playAudio = async () => {
+      if (hasPlayedRef.current || !audio) return;
       try {
         await audio.play();
+        hasPlayedRef.current = true;
       } catch {
-        // Fallback for strict browser autoplay policies: trigger on first user interaction
-        const handleFirstInteraction = () => {
-          audio.play().catch(() => {});
-          window.removeEventListener('click', handleFirstInteraction);
-          window.removeEventListener('touchstart', handleFirstInteraction);
-          window.removeEventListener('keydown', handleFirstInteraction);
+        // Browser autoplay policy restricted automated playback without user gesture.
+        // Listen to first user gesture using capture phase so no child stopPropagation can block it.
+        const unlockAndPlay = async () => {
+          if (hasPlayedRef.current || !audio) return;
+          try {
+            await audio.play();
+            hasPlayedRef.current = true;
+          } catch (e) {
+            console.warn('Welcome audio playback error:', e);
+          } finally {
+            cleanup();
+          }
         };
 
-        window.addEventListener('click', handleFirstInteraction, { once: true });
-        window.addEventListener('touchstart', handleFirstInteraction, { once: true });
-        window.addEventListener('keydown', handleFirstInteraction, { once: true });
+        const cleanup = () => {
+          window.removeEventListener('pointerdown', unlockAndPlay, true);
+          window.removeEventListener('click', unlockAndPlay, true);
+          window.removeEventListener('touchstart', unlockAndPlay, true);
+          window.removeEventListener('keydown', unlockAndPlay, true);
+        };
+
+        window.addEventListener('pointerdown', unlockAndPlay, { capture: true, once: true });
+        window.addEventListener('click', unlockAndPlay, { capture: true, once: true });
+        window.addEventListener('touchstart', unlockAndPlay, { capture: true, once: true });
+        window.addEventListener('keydown', unlockAndPlay, { capture: true, once: true });
       }
     };
 
-    // Small delay to ensure smooth page load
-    const timer = setTimeout(() => {
-      playAudio();
-    }, 300);
-
-    return () => {
-      clearTimeout(timer);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
+    if (isSiteReady && !hasPlayedRef.current) {
+      // Allow curtain transition to unveil before speaking
+      const timer = setTimeout(() => {
+        playAudio();
+      }, 350);
+      return () => clearTimeout(timer);
+    }
   }, [isSiteReady]);
 
-  // Audio-only gesture: no visual UI
+  // Purely audio gesture - zero visual UI
   return null;
 };
 

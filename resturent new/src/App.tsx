@@ -68,6 +68,9 @@ export const App: React.FC = () => {
       {/* React Bits Fluid Splash Cursor Effect */}
       <SplashCursor COLOR="#f75555" />
 
+      {/* Welcome Voice Gesture (Invisible audio playback upon site ready) */}
+      <WelcomeVoice isSiteReady={!isLoading} />
+
       {/* Page Intro Loader */}
       {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}
 
@@ -117,9 +120,6 @@ export const App: React.FC = () => {
 
           {/* Floating Café Assistant Chatbot */}
           <CafeChatbot />
-
-          {/* Welcome Voice Gesture */}
-          <WelcomeVoice isSiteReady={!isLoading} />
         </>
       )}
     </div>
