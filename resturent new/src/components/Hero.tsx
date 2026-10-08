@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Utensils, Flame, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Sparkles, Flame, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const TOTAL_FRAMES = 240;
 
@@ -13,7 +13,7 @@ interface HeroProps {
   onOpenReservation?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
+export const Hero: React.FC<HeroProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -217,7 +217,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
   // ---------------------------------------------------------------------------
   // Dynamic Storytelling Badges based on Scroll Progress
   // ---------------------------------------------------------------------------
-  const showIntro = scrollProgress < 0.18;
   const showLayer1 = scrollProgress >= 0.18 && scrollProgress < 0.42;
   const showLayer2 = scrollProgress >= 0.42 && scrollProgress < 0.68;
   const showLayer3 = scrollProgress >= 0.68 && scrollProgress < 0.88;
@@ -355,54 +354,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
 
           {/* Dynamic Storytelling / Intro / Outro Layered Around Platter */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-6 md:px-12">
-            {/* Intro Hero Text (Visible during 0% - 18% scroll) */}
-            <AnimatePresence>
-              {showIntro && (
-                <motion.div
-                  key="intro-headline"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -25, scale: 0.96 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-center max-w-3xl mx-auto pointer-events-auto bg-[#F8F5EE]/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#1A1A1A]/10 shadow-[0_20px_50px_rgba(0,0,0,0.07)]"
-                >
-                  <div className="inline-block bg-white/90 px-4 py-1.5 rounded-full border border-[#1A1A1A]/10 text-xs uppercase tracking-widest font-mono text-[#C8321F] mb-3 shadow-xs font-semibold">
-                    ★ Bienvenue au Bistrot Chérie ★
-                  </div>
 
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif-display font-bold leading-[1.0] tracking-tight text-[#1A1A1A]">
-                    Life is a <span className="font-serif-italic text-[#C8321F]">party</span>, <br />
-                    and the table is a <span className="font-serif-italic text-[#A8761A]">feast</span>.
-                  </h1>
-
-                  <p className="mt-3 text-xs sm:text-sm md:text-base text-[#4A453E] max-w-lg mx-auto leading-relaxed">
-                    Handmade brioche, 45-day dry-aged Wagyu blend, fontina fondue & natural wine.
-                    <span className="text-[#C8321F] font-semibold block sm:inline sm:ml-1">
-                      Scroll down to deconstruct our masterpiece.
-                    </span>
-                  </p>
-
-                  {/* CTA Action Buttons */}
-                  <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-                    <button
-                      onClick={onOpenReservation}
-                      className="px-6 py-3 rounded-full bg-[#C8321F] hover:bg-[#A32516] text-white font-medium text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-[#C8321F]/20 transition-all flex items-center gap-2 cursor-pointer"
-                    >
-                      <Sparkles className="w-4 h-4 text-[#E9B44C]" />
-                      <span>Book Your Table</span>
-                    </button>
-
-                    <button
-                      onClick={scrollToMenu}
-                      className="px-6 py-3 rounded-full bg-white/90 hover:bg-[#1A1A1A] hover:text-white border border-[#1A1A1A]/15 text-[#1A1A1A] font-medium text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer shadow-sm"
-                    >
-                      <Utensils className="w-4 h-4 text-[#C8321F]" />
-                      <span>Explore Menu</span>
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
 
             {/* Deconstructed Story Cards: Layer 1 (Brioche & Butter) */}
             <AnimatePresence>
